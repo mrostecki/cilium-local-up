@@ -10,10 +10,7 @@ GIT_FORK_KUBERNETES=${GIT_FORK_KUBERNETES:-""}
 GIT_FORK_BPFNEXT=${GIT_FORK_BPFNEXT:-""}
 GIT_FORK_IPROUTE2=${GIT_FORK_IPROUTE2:-""}
 
-function err_undef_var() {
-    printf "Please set the %s variable\n" "$*" >&2
-    exit 1
-}
+source common.sh
 
 function clone_repo() {
     local dest="$1"
@@ -36,9 +33,7 @@ function clone_repo() {
     fi
 }
 
-if [ -z "${GOPATH}" ]; then
-    err_undef_var "GOPATH"
-fi
+
 
 if [ ! -d "${REPOS_PATH}" ]; then
     mkdir -p "${REPOS_PATH}"
