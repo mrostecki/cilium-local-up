@@ -23,6 +23,7 @@ function install_proxy() {
 function install_crio() {
     pushd "${GOPATH}/src/github.com/cri-o/cri-o"
     sudo make install
+    sudo make install.systemd
     popd
 }
 
