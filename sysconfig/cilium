@@ -1,0 +1,35 @@
+### Configuration options for cilium
+
+## Path:                System/Management
+## Description:         PATH env for cilium to find clang/llvm
+## Type:                string
+## Default:             ""
+## ServiceRestart:      cilium
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
+
+## Path:                System/Management
+## Description:         Extra cli switches for cilium daemon
+## Type:                string
+## Default:             ""
+## ServiceRestart:      cilium
+
+# Set Key-value store(etcd/consul):
+# --kvstore consul
+# Set Key-value store options:
+# --kvstore-opt consul.address=127.0.0.1:8500
+#
+# Note: A key-value store is require for cilium to function.
+# Check more cli options using cilium-agent -h
+
+CILIUM_OPTS=--k8s-kubeconfig-path=/var/run/kubernetes/admin.kubeconfig --disable-envoy-version-check --debug --kube-proxy-replacement=strict --device=enp5s0
+CILIUM_OPERATOR_OPTS=--k8s-kubeconfig-path=/var/run/kubernetes/admin.kubeconfig --debug --cluster-pool-ipv4-cidr=10.1.0.0/16 --cluster-pool-ipv6-cidr=fd00::/104
+K8S_NODE_NAME="127.0.0.1"
+
+## Path:                System/Management
+## Description:         init system cilium is running on 
+## Type:                string
+## Default:             ""
+## ServiceRestart:      cilium
+
+INITSYSTEM=SYSTEMD
