@@ -10,3 +10,7 @@ function check_gopath() {
         err_undef_var "GOPATH"
     fi
 }
+
+function wait_for_k8s() {
+    timeout 5m bash -c "until kubectl get all &>/dev/null; do echo 'Waiting for Kubernetes...'; sleep 10; done"
+}
