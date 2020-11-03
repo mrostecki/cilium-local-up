@@ -40,6 +40,7 @@ function install_iproute2() {
 }
 
 function install_systemd() {
+    sudo install -D -m 0644 sysconfig/cilium /etc/sysconfig/cilium
     for service in cilium cilium-operator; do
         sudo install -D -m 0644 \
             systemd/${service}.service \
