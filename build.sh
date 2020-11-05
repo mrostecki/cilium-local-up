@@ -3,6 +3,20 @@
 set -eu
 
 REPOS_PATH=${REPOS_PATH:-"${HOME}/repos"}
+skip_envoy=false
+
+while :; do
+    case "${1-}" in
+        --skip-envoy)
+            skip_envoy=true
+            break
+            ;;
+        *)
+            break
+    esac
+
+    shift
+done
 
 source common.sh
 
@@ -42,7 +56,9 @@ function build_iproute2() {
 }
 
 build_cilium
-build_proxy
+if ! $skip_envoy; then
+    build_proxy
+fi
 build_crio
 build_bpftool
 build_iproute2
