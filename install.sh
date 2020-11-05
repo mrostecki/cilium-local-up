@@ -29,7 +29,7 @@ function install_crio() {
 
 function install_bpftool() {
     pushd "${REPOS_PATH}/bpf-next/tools/bpf/bpftool"
-    sudo make install
+    sudo make install doc-install
     popd
 }
 
